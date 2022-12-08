@@ -3,7 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
 // Import the GraphQL mutation
-import { ADD_USER } from '../../utils/mutations';
+import { ADD_USER } from '../../src/utils/mutations';
 import Auth from '../utils/auth';
 
 const SignupForm = () => {

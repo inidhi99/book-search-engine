@@ -6,7 +6,7 @@ const resolvers = {
     Query: {
         me: async (parent, args, context) => {
             if (context.user) {
-                const userData = await User.findOne({_id: context.user._id}).select('-__v -password');
+                const userData = await User.findOne({_id: context.user._id}).select('-__v -password').populate("books");;
                 return userData;
             };
             throw new AuthenticationError("You must be logged in!");
@@ -43,7 +43,6 @@ const resolvers = {
                         { $addToSet: { savedBooks: bookData } },
                         { new: true },
                     )
-                    .populate("books");
                 return updatedUser;
             };
             throw new AuthenticationError("You must be logged in to save books!");

@@ -4,13 +4,14 @@ import { Form, Button, Alert } from 'react-bootstrap';
 // Import the `useMutation()` hook from Apollo Client
 import { useMutation } from '@apollo/client';
 // Import the GraphQL mutation
-import { LOGIN_USER } from '../../utils/mutations';
+import { LOGIN_USER } from '../../src/utils/mutations';
 import Auth from '../utils/auth';
 
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  
   const [loginUser, { error }] = useMutation(LOGIN_USER)
 
   const handleInputChange = (event) => {

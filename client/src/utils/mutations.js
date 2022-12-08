@@ -46,4 +46,4 @@ mutation removeBook($bookId: ID!) {
         bookId
     }
 }
-`
+`;
