@@ -1,11 +1,6 @@
 import React from 'react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-} from '@apollo/client';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 import SearchBooks from './pages/SearchBooks';
@@ -18,7 +13,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = Auth.getTokent();
+  const token = Auth.getToken();
   return {
     headers: {
       ...headers,
@@ -29,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({}),
 });
 
 function App() {
@@ -38,17 +33,15 @@ function App() {
       <Router>
         <>
           <Navbar />
-          <Switch>
+          <Routes>
             <Route path="/" element={<SearchBooks />} />
             <Route path="/saved" element={<SavedBooks />} />
-            <Route
-              path="*"
-              element={<h1 className="display-2">Wrong page!</h1>}
-            />
-          </Switch>
+            <Route path="*" element={<h1 className="display-2">Wrong page!</h1>} />
+          </Routes>
         </>
       </Router>
     </ApolloProvider>
   );
 }
+
 export default App;
