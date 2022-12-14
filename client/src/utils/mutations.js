@@ -25,20 +25,8 @@ export const SIGNUP_USER = gql`
 `;
 
 export const SAVE_BOOK = gql`
-  mutation saveBook(
-    $title: String!
-    $description: String
-    $image: String!
-    $authors: [String]
-    $bookId: ID!
-  ) {
-    saveBook(
-      title: $title
-      description: $description
-      image: $image
-      authors: $authors
-      bookId: $bookId
-    ) {
+  mutation saveBook($title: String!, $description: String, $image: String!, $authors: [String], $bookId: ID!) {
+    saveBook(title: $title, description: $description, image: $image, authors: $authors, bookId: $bookId) {
       _id
       username
       bookCount
