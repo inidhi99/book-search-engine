@@ -1,5 +1,5 @@
 // DEPENDENCIES
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
@@ -16,16 +16,16 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 // Create a new instance of an Apollo server with the GraphQL schema
